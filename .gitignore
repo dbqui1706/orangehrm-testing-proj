@@ -1,0 +1,26 @@
+# Virtual environment
+.venv/
+venv/
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Test reports
+reports/
+.pytest_cache/
+
+# Screenshots
+screenshots/
+
+# Environment variables
+.env
+
+# IDE-specific files
+.idea/
+.vscode/
+
+# Distribution and build artifacts
+dist/
+build/
+*.egg-info/
