@@ -13,12 +13,15 @@ logger = logging.getLogger(__name__)
 class PIMPage(BasePage):
     """Page object for the PIM (Personal Information Management) page."""
     # Locators
+    ADD_EMPLOYEE_BUTTON = (By.XPATH, '//a[text()="Add Employee"]')
+    EMPLOYEE_LIST_LINK = (By.XPATH, '//a[text()="Employee List"]')
+
     EMPLOYEE_NAME_INPUT = (By.XPATH, '//label[text()="Employee Name"]/../following-sibling::div//input')
     SEARCH_BUTTON = (By.CSS_SELECTOR, 'button[type="submit"]')
     NO_RECORDS_FOUND_MESSAGE = (By.XPATH, '//*[text()="No Records Found"]')
     FIRST_ROW_CELL = (By.CSS_SELECTOR, '.oxd-table-card .oxd-table-row .oxd-table-cell')
     ROWS_ITEMS = (By.CLASS_NAME, 'oxd-table-card')
-    
+
     AUTOCOMPLETE_OPTIONS = (By.CLASS_NAME, "oxd-autocomplete-option")
     LOADING_SPINNER = (By.CLASS_NAME, "oxd-loading-spinner")
 
@@ -92,3 +95,8 @@ class PIMPage(BasePage):
             bool: True if results are visible, False otherwise
         """
         return self._is_element_visible(*self.FIRST_ROW_CELL)
+
+    def click_add_employee(self) -> None:
+        """Navigate to Add Employee page by clicking the Add Employee button."""
+        logger.info("Navigating to Add Employee page")
+        self._click(*self.ADD_EMPLOYEE_BUTTON)

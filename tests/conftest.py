@@ -16,6 +16,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Suppress WebDriver Manager logs to speed up initialization
+logging.getLogger('WDM').setLevel(logging.ERROR)
+
 
 @pytest.fixture(scope="function")
 def driver_init(request):
@@ -40,7 +43,7 @@ def driver_init(request):
     # chrome_options.add_argument("--headless")
     # chrome_options.add_argument("--disable-gpu")
 
-    # Initialize driver
+    # Initialize driver - WebDriver Manager will cache automatically
     driver = webdriver.Chrome(
         service=ChromeService(ChromeDriverManager().install()),
         options=chrome_options
